@@ -5,6 +5,39 @@ contact_info:
   name: "@tournade29"
   url: https://shuffler.io
   email: pascal.johnson@kpconcept.com
+authentication:
+  required: true
+  parameters:
+    - name: url
+      description: phpipam
+      required: true
+      example: "https://phpipam.local"
+      schema:
+        type: string
+    - name: username
+      description: The phpipam username
+      example: username
+      required: true
+      schema:
+        type: string
+    - name: password
+      description: The phpipam password
+      required: true
+      example: "******"
+      schema:
+        type: string
+    - name: app
+      description: The phpipam app name
+      example: splunk
+      required: true
+      schema:
+        type: string
+    - name: api
+      description: the phpipam api key
+      required: true
+      example: "******"
+      schema:
+        type: string
 actions:
   - name: run_python_script
     description: Runs a python script defined by YOU 
