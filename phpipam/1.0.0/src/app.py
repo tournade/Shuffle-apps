@@ -50,7 +50,7 @@ class PythonPlayground(AppBase):
                 location = line['location']["name"]
 
             info.append([line['subnet'],str(line['mask']),str(line['vlanId']),str(line['description']),str(location)])
-        return info
+        return info[0][0]
     # Write your data inside this function
     async def run_python_script(self, json_data, function_to_execute):
         # It comes in as a string, so needs to be set to JSON
