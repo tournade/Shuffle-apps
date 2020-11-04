@@ -19,15 +19,36 @@ class PythonPlayground(AppBase):
         """
         super().__init__(redis, logger, console_logger)
 
-    def run_me_1(self, json_data): 
-        return "Ran function 1"
+    async def List_all_subnet(self,url,username,password,app,api):
+        import sys
+        import warnings
 
-    def run_me_2(self, json_data): 
-        return "Ran function 2"
+        if not sys.warnoptions:
+            warnings.simplefilter("ignore")
 
-    def run_me_3(self, json_data): 
-        return "Ran function 3"
+        from phpipam_client import PhpIpamClient
 
+        ipam = PhpIpamClient(
+            ssl_verify=False,
+            url=url,
+            app_id=app,
+            username=username,
+            password=password,
+            token=api,
+            user_agent='Splunk_lookup',
+        )
+
+        subnet = ipam.get('/subnets/')
+        info=[]
+        for line in subnet:
+
+            if (isinstance(line['location'], list) or not line['location']):
+                location = 'N/A'
+            else:
+                location = line['location']["name"]
+
+            info.append([line['subnet'],str(line['mask']),str(line['vlanId']),str(line['description']),str(location)])
+        return info
     # Write your data inside this function
     async def run_python_script(self, json_data, function_to_execute):
         # It comes in as a string, so needs to be set to JSON
