@@ -20,9 +20,11 @@ class PythonPlayground(AppBase):
         super().__init__(redis, logger, console_logger)
 
     async def List_all_subnet(self,url,username,password,app,api):
+        print("1")
         import sys
+        print("2")
         import warnings
-
+        print("3")
         if not sys.warnoptions:
             warnings.simplefilter("ignore")
 
