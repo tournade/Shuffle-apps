@@ -53,4 +53,4 @@ class PhpIpam(AppBase):
         return info[0][0]
 
 if __name__ == "__main__":
-    asyncio.run(PythonPlayground.run(), debug=True)
+    asyncio.run(PhpIpam.run(), debug=True)
